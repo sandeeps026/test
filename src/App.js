@@ -1,24 +1,29 @@
-import logo from './logo.svg';
+
+import { useState } from 'react';
 import './App.css';
+// import { HelloWorld, Welcome } from './components/HelloWord';
+// import * as Components from './components/HelloWord';
+import Components from "./components/HelloWord"
+import Props from './components/Props';
 
 function App() {
+
+  let arrayOfNames = ["sandeep", "nayab"];
+  const [arrayName, setArrayNames] = useState(arrayOfNames);
+  function addNewName() {
+    setArrayNames(oldNames=>([...oldNames, "raju"]))
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    {/* <Components.HelloWorld />
+    <Components.Welcome /> */}
+    {/* <Props name="sandeep" />   */}
+    {/* <Props name="nayab" /> */}
+    {
+      arrayName.map((name, i)=><Props key={i} name={name} />)
+    }
+    <button onClick={addNewName}>Add another one</button>
+    </>
   );
 }
 
